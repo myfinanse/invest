@@ -45,7 +45,7 @@ done
 
 
 
-tmp="health_care_listing.tmp.txt"
+tmp="health_care_share_listing.tmp.txt"
 test -f $tmp && rm $tmp 
 echo "Ticker  Stock_Name Category Recent_Day_Price  Day_Change_$ Day_Ch_%  Weekly_Change%   YTD_Change%" > $tmp
 
@@ -54,5 +54,7 @@ for i in 0 25 50 75 100 125 ; do
    f2="${f}.tmp"
 
    cat ${f2}.4.format >> $tmp
-   cat $tmp | sed 's/ \([0-9]\)/ +\1/g' | column -t | sed 's/[+]/ /g' > "health_care_listing_$(date +%F.%H:%M%S.%N).txt" 
+   cat $tmp | sed 's/ \([0-9]\)/ +\1/g' | column -t | sed 's/[+]/ /g' > health_care_share_stats.txt
 done
+
+cp health_care_share_stats.txt "health_care_share_stats_$(date +%F.%H:%M%S.%N).txt" 
